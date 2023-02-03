@@ -44,7 +44,6 @@ body {
   list-style: none;
   display: flex;
   flex-direction: column;
-  gap: 2rem;
   background: whitesmoke;
   width: max-content;
   border-radius: 1rem;
@@ -81,7 +80,7 @@ body {
   list-style: none;
   width: 100%;
   justify-content: space-between;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
   gap: 2rem;
   grid-template-rows: 5rem;
   margin-top: 2rem;
@@ -180,14 +179,14 @@ body {
   padding: 2rem;
   border-radius: 1rem;
   font-weight: 300;
-  width: 50%;
+  width: 30%;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
 .cookie {
-  width: 40rem;
+  width: 30rem;
   aspect-ratio: 1/1;
   background: #C68B59;
   border-radius: 50%;
@@ -203,8 +202,26 @@ body {
 .cookie:active {
   transform: scale(0.95);
 }
+.cookie--chocolate {
+  background: #3C2A21;
+  box-shadow: 0 2rem 1.5rem 0rem rgba(0, 0, 0, 0.2);
+  border: 1rem solid #1C0A00;
+}
+.cookie--chocolate .cookie__spots {
+  background: #1C0A00;
+  border-radius: 25%;
+}
+.cookie--redval {
+  background: #df3434;
+  box-shadow: inset 0 0 10rem 0 #322424, 0 2rem 1.5rem 0rem rgba(0, 0, 0, 0.2);
+  border: 1rem solid #4c0c0c;
+}
+.cookie--redval .cookie__spots {
+  background: #d5d1d1;
+  border-radius: 10%;
+}
 .cookie__spots {
-  width: 7rem;
+  width: 5rem;
   aspect-ratio: 1/1;
   background: #322424;
   border-radius: 45%;
