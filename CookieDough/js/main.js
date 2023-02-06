@@ -16,10 +16,12 @@ class Cookie{
     }
 
     onStyleChange(){
+        this.htmlElement.classList.remove("cookie--redval");
         this.htmlElement.classList.add("cookie--chocolate");
     }
 
     onStyleChangeTwo(){
+        this.htmlElement.classList.remove("cookie--chocolate");
         this.htmlElement.classList.add("cookie--redval");
     }
 }
@@ -160,3 +162,4 @@ console.log(redval);
 const multiplierMobile = new Multiplier(document.getElementById("js--multiplier--mobile"), cookie);
 const autoMobile = new autoScore(document.getElementById("js--autoScore--mobile"),score);
 const chocolateMobile = new ChocolateCookie(document.getElementById("js--chocolate--mobile"),cookie);
+const redvalMobile = new RedValvetCookie(document.getElementById("js--redvalvet--mobile"), cookie);
