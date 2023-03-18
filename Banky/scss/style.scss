@@ -1,0 +1,13 @@
+@use "./abstracts/reset";
+@use "./base";
+
+
+// components
+@use "./components/header/header.scss";
+@use "./components/avatar/avatar.scss";
+@use "./components/banky/banky.scss";
+@use "./components/scrollbar/scrollbar.scss";
+
+
+// mediaqueries
+@use "./abstracts/mediaqueries";
