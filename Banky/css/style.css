@@ -212,10 +212,14 @@ body {
   background: linear-gradient(to top left, #B5F1CC, 10%, #DCFCC1);
   transform: scale(105%);
 }
+.banky__switchAccount:active, .banky__eyeButton:active {
+  transform: scale(95%);
+}
 .banky__account {
   display: flex;
   align-items: center;
   gap: 1rem;
+  cursor: pointer;
 }
 .banky__nameOfAccount {
   font-weight: 400;

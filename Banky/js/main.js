@@ -161,7 +161,6 @@ class BankyLeftSection{
 
 
 
-        console.log(totalMoney);
         for(let i = 0; i < data[accountToShow].length; i++){
             this.transactionElement = document.createElement("li");
             this.transactionElement.classList = "banky__transaction";
@@ -215,6 +214,9 @@ class BankyRightSection{
 
         this.accountElement = document.createElement("li");
         this.accountElement.classList = "banky__account";
+        this.accountElement.onclick = () => {
+            console.log(entry);
+        }
 
         this.switchAccountElement = document.createElement("button");
         this.switchAccountElement.classList = "banky__switchAccount";

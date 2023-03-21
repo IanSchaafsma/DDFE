@@ -129,7 +129,7 @@
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        gap: 4rem;        
+        gap: 4rem;      
     }
 
     &__switchAccount, &__eyeButton{
@@ -144,12 +144,21 @@
             background: linear-gradient(to top left, map-get(colors.$baseColors,"background"), 10%, map-get(colors.$baseColors,"backgroundLight"));
             transform: scale(105%);
         }
+
+        &:active{
+            transform: scale(95%); 
+        }
+
+        
     }
+
+    
 
     &__account{
         display: flex;
         align-items: center;
         gap: 1rem;
+        cursor: pointer;
     }
 
     &__nameOfAccount{
