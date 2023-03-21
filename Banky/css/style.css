@@ -150,6 +150,7 @@ body {
   gap: 2rem;
   height: 50rem;
   overflow-y: scroll;
+  scroll-snap-type: y mandatory;
 }
 .banky__transaction {
   display: flex;
@@ -158,6 +159,8 @@ body {
   justify-content: space-between;
   position: relative;
   padding-bottom: 0.5rem;
+  flex-shrink: 0;
+  scroll-snap-align: center;
 }
 .banky__transaction::after {
   content: "";
@@ -220,6 +223,7 @@ body {
   align-items: center;
   gap: 1rem;
   cursor: pointer;
+  width: 22rem;
 }
 .banky__nameOfAccount {
   font-weight: 400;

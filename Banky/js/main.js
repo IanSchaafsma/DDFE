@@ -89,11 +89,11 @@ class BankyMain{
         this.mainElement.classList = "banky";
 
         this.leftSection = new BankyLeftSection(this.mainElement);
-        this.rightSection = new BankyRightSection(this.mainElement);
+        this.rightSection = new BankyRightSection(this.mainElement, this.leftSection);
     }
 
     makeTransactionsFromData(data){
-        this.leftSection.makeTransactionsFromData("bankrekening", data); 
+        this.leftSection.makeTransactionsFromData("ZZP-Rekening", data); 
     }
 
     makeButtonsFromData(data){
@@ -156,10 +156,9 @@ class BankyLeftSection{
         }
 
         this.bankyLogoTextElement.innerText = "Saldo " +  " €" + totalMoney;
-        
-        
 
-
+        // empty ul before adding li
+        this.transactionsElement.innerHTML = "";
 
         for(let i = 0; i < data[accountToShow].length; i++){
             this.transactionElement = document.createElement("li");
@@ -199,8 +198,10 @@ class BankyLeftSection{
 
 class BankyRightSection{
     mainElement;
-    constructor(mainElement){
+    leftSection;
+    constructor(mainElement, leftSection){
         this.mainElement = mainElement;
+        this.leftSection = leftSection;
         // right section
         this.rightSectionElement = document.createElement("section");
         this.rightSectionElement.classList = "banky__section banky__section--right";
@@ -215,7 +216,7 @@ class BankyRightSection{
         this.accountElement = document.createElement("li");
         this.accountElement.classList = "banky__account";
         this.accountElement.onclick = () => {
-            console.log(entry);
+            this.leftSection.makeTransactionsFromData(entry[0], data);
         }
 
         this.switchAccountElement = document.createElement("button");

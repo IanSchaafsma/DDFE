@@ -35,12 +35,6 @@
     ],
     
 
-
-
-
-
-
-
     "ZZP-Rekening": [
         {
             "from/to": "Bedrijf X",
@@ -50,5 +44,7 @@
             "from/to": "Bedrijf Y",
             "amount": -500
         }
-    ]     
+    ]
+
+    
 }

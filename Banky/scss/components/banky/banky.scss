@@ -79,6 +79,7 @@
         gap: 2rem;
         height: 50rem;
         overflow-y: scroll;
+        scroll-snap-type: y mandatory;
     }
 
     &__transaction{
@@ -88,6 +89,11 @@
         justify-content: space-between;
         position: relative;
         padding-bottom: 0.5rem;
+        // height: 50rem;
+        flex-shrink: 0;
+        scroll-snap-align: center;
+        
+
 
         &::after{
             @include mixins.afterStyle;
@@ -159,6 +165,7 @@
         align-items: center;
         gap: 1rem;
         cursor: pointer;
+        width: 22rem;
     }
 
     &__nameOfAccount{
