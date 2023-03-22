@@ -2,7 +2,8 @@
     "bankrekening": [
     {
         "from/to": "Jeroen",
-        "amount": 10
+        "amount": 10,
+        "logo": "fa-solid fa-coins"
     },
     {
         "from/to": "Dejordan",
@@ -38,7 +39,8 @@
     "ZZP-Rekening": [
         {
             "from/to": "Bedrijf X",
-            "amount": 10000
+            "amount": 10000,
+            "logo": "fa-solid fa-briefcase"
         },
         {
             "from/to": "Bedrijf Y",

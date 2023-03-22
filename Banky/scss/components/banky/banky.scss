@@ -1,6 +1,8 @@
 @use "../../abstracts/vars";
 @use "../../abstracts/colors";
 @use "../../abstracts/mixins";
+@use "../../abstracts/animations";
+
 .banky{
     background: map-get(colors.$baseColors,"whiteColor");
     min-height: calc(100vh - map-get(vars.$vhCalc, "heightOfHeader") - map-get(vars.$vhCalc, "paddingOfBody"));
@@ -11,8 +13,11 @@
     margin: 0 auto;
 
 
+
     &__section{
         display: flex;
+
+        @include animations.popup;
 
 
         &--left{
@@ -40,6 +45,10 @@
     &__money{
         font-weight: 400;
         font-size: 250%;
+
+        &--blur{
+            @include mixins.blur;
+        }
     }
 
     &__logo{
@@ -80,6 +89,10 @@
         height: 50rem;
         overflow-y: scroll;
         scroll-snap-type: y mandatory;
+
+        &--blur{
+            @include mixins.blur;
+        }
     }
 
     &__transaction{
@@ -92,6 +105,7 @@
         // height: 50rem;
         flex-shrink: 0;
         scroll-snap-align: center;
+        @include animations.popup;
         
 
 
