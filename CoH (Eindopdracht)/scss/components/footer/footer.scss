@@ -1,0 +1,12 @@
+@use "../../abstracts/colors";
+.footer{
+    height: 5%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    &__name{
+        color: map-get(colors.$baseColors,"primary-seventh");
+    }
+}
