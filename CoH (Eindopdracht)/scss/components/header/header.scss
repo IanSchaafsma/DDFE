@@ -9,7 +9,7 @@
 
     &__logo{
         font-size: 8rem;
-        color: map-get(colors.$baseColors,"primary-color");
+        color: map-get(colors.$baseColors,"secondary-color");
         transition: all 2s ease;
 
         &:hover{

@@ -15,18 +15,54 @@
         border-radius: 0.5rem;
         position: relative;
         background: map-get(colors.$baseColors,"sixth-color");
-    
+        color: map-get(colors.$baseColors,"fifth-color");
+        overflow: hidden;
+
         &Date{
             position: absolute;
             top: 4%;
             right: 4%;
+            z-index: 1;
         }
 
         &Title{
             position: absolute;
             bottom: 4%;
             left: 4%;
+            z-index: 1;
         }
+
+        &Img{
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 0.5rem;
+            filter: sepia(10%) blur(0) brightness(80%);
+            transition: filter 0.2s;
+
+            &:hover{
+                filter: sepia(80%) blur(1px);
+                cursor: pointer;
+            }
+
+            &:active{
+                filter: sepia(80%);
+            }
+        }
+
+        &::after{
+            content: "";
+            position: absolute;
+            display: block;
+            bottom: 0;
+            left: 0;
+            background: rgba(0, 0, 0, 0.411);
+            width: 50%;
+            border-radius: 0 2rem 0 0;
+            height: 4.2rem;
+            z-index: 0;
+        }
+
     }
 
 }
