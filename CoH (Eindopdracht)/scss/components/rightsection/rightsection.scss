@@ -1,4 +1,66 @@
+@use "../../abstracts/colors";
 .rightSection{
-    width: 50%;
+    width: 45%;
     height: 100%;
+    padding: 4rem;
+
+    &__card{
+        width: 100%;
+        height: 40%;
+        border-radius: 0.5rem;
+        position: relative;
+        background: map-get(colors.$baseColors,"sixth-color");
+        color: map-get(colors.$baseColors,"fifth-color");
+        overflow: hidden;
+
+        &Date{
+            position: absolute;
+            top: 4%;
+            right: 4%;
+            z-index: 1;
+        }
+
+        &Title{
+            position: absolute;
+            bottom: 4%;
+            left: 4%;
+            z-index: 1;
+        }
+
+        &Img{
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 0.5rem;
+            filter: sepia(10%) blur(0) brightness(80%);
+        }
+    }
+
+    &__Text{
+        padding: 1.5rem;
+        font-size: 1.9rem;
+        font-weight: 300;
+        margin-bottom: 4rem;
+    }
+
+    &__buttonWrapper{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        
+    }
+
+    &__sourceButton{
+        font-size: 2.5rem;
+        text-decoration: none;
+        color: map-get(colors.$baseColors,"seventh-color");
+
+        &:hover{
+            text-decoration: underline;
+        }
+
+        &:active{
+            transform: translateX(2px)
+        }
+    }
 }

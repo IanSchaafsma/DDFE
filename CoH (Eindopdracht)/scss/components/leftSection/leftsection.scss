@@ -1,17 +1,15 @@
 @use "../../abstracts/colors";
 .leftSection{
-    width: 50%;
+    width: 40%;
     height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
     padding: 4rem;
     gap: 2rem;
 
     &__card{
-        width: 45%;
-        height: 50%;
+        width: 100%;
+        height: 100%;
         border-radius: 0.5rem;
         position: relative;
         background: map-get(colors.$baseColors,"sixth-color");

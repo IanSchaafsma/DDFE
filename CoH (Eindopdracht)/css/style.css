@@ -41,6 +41,7 @@ body {
 
 .main {
   display: flex;
+  justify-content: space-between;
   height: 75%;
   width: 100%;
 }
@@ -66,21 +67,20 @@ body {
 }
 .header__brandName {
   font-size: 4rem;
+  font-weight: 800;
 }
 
 .leftSection {
-  width: 50%;
+  width: 40%;
   height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   padding: 4rem;
   gap: 2rem;
 }
 .leftSection__card {
-  width: 45%;
-  height: 50%;
+  width: 100%;
+  height: 100%;
   border-radius: 0.5rem;
   position: relative;
   background: #ececec;
@@ -128,8 +128,59 @@ body {
 }
 
 .rightSection {
-  width: 50%;
+  width: 45%;
   height: 100%;
+  padding: 4rem;
+}
+.rightSection__card {
+  width: 100%;
+  height: 40%;
+  border-radius: 0.5rem;
+  position: relative;
+  background: #ececec;
+  color: #FFFFFF;
+  overflow: hidden;
+}
+.rightSection__cardDate {
+  position: absolute;
+  top: 4%;
+  right: 4%;
+  z-index: 1;
+}
+.rightSection__cardTitle {
+  position: absolute;
+  bottom: 4%;
+  left: 4%;
+  z-index: 1;
+}
+.rightSection__cardImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 0.5rem;
+  filter: sepia(10%) blur(0) brightness(80%);
+}
+.rightSection__Text {
+  padding: 1.5rem;
+  font-size: 1.9rem;
+  font-weight: 300;
+  margin-bottom: 4rem;
+}
+.rightSection__buttonWrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.rightSection__sourceButton {
+  font-size: 2.5rem;
+  text-decoration: none;
+  color: #000000;
+}
+.rightSection__sourceButton:hover {
+  text-decoration: underline;
+}
+.rightSection__sourceButton:active {
+  transform: translateX(2px);
 }
 
 .footer {
