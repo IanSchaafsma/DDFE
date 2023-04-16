@@ -1,20 +1,30 @@
 @use "../../abstracts/colors";
 .leftSection{
-    width: 40%;
+    width: 45%;
     height: 100%;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
     padding: 4rem;
-    gap: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
 
+    &> div{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 50% 50%;
+        gap: 2rem;
+    }
     &__card{
         width: 100%;
-        height: 100%;
+        aspect-ratio: 1/1;
         border-radius: 0.5rem;
-        position: relative;
-        background: map-get(colors.$baseColors,"sixth-color");
         color: map-get(colors.$baseColors,"fifth-color");
         overflow: hidden;
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        
 
         &Date{
             position: absolute;
@@ -32,7 +42,7 @@
 
         &Img{
             width: 100%;
-            height: 100%;
+            aspect-ratio: 1/1;
             object-fit: cover;
             border-radius: 0.5rem;
             filter: sepia(10%) blur(0) brightness(80%);
@@ -47,6 +57,8 @@
                 filter: sepia(80%);
             }
         }
+
+        
 
         &::after{
             content: "";

@@ -13,8 +13,7 @@ body{
 }
 
 .card{
-    width: 80vw;
-    height: 90vh;
+    width: 80%;
     background: map-get(colors.$baseColors,"fifth-color");
     border-radius: 2rem 2rem 0 0;
 
@@ -31,7 +30,7 @@ body{
 .main{
     display: flex;
     justify-content: space-between;
-    height: 75%;
+    height: 70rem;
     width: 100%;
     
 }
