@@ -2,7 +2,6 @@
 .leftSection{
     width: 45%;
     height: 100%;
-    padding: 4rem;
     display: flex;
     justify-content: center;
     align-items: flex-start;
@@ -10,7 +9,7 @@
     &> div{
         display: grid;
         grid-template-columns: 1fr 1fr;
-        grid-template-rows: 50% 50%;
+        grid-template-rows: 1fr 1fr;
         gap: 2rem;
     }
     &__card{
