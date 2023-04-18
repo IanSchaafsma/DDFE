@@ -1,0 +1,42 @@
+{
+    "games": [{
+        "title": "Rocket League",
+        "platform": "PC"
+    },
+    {
+        "title": "Monster Hunter World",
+        "platform": "PC"
+    },
+    {
+        "title": "PvZ Garden Warfare 2",
+        "platform": "PS4"
+    },
+    {
+        "title": "Denk unlimited",
+        "platform": "T-mobile"
+    },
+    {
+        "title": "Wii party",
+        "platform": "Wii"
+    },
+    {
+        "title": "Super Mario Galaxy",
+        "platform": "Wii"
+    },
+    {
+        "title": "Roblox",
+        "platform": "PC"
+    },
+    {
+        "title": "GTA V",
+        "platform": "PS4"
+    },
+    {
+        "title": "Ark Survival Evolved",
+        "platform": "PS4"
+    },
+    {
+        "title": "Super Mario Bros Wii",
+        "platform": "Wii"
+    }]
+}
