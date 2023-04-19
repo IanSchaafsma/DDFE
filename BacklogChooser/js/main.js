@@ -60,23 +60,39 @@ class PrettyPlatform{
     }
 }
 
+class Render{
+    render(randomResult){
+        // article > h1
+        const articleToBeRendered = document.createElement("article");
+        articleToBeRendered.classList = "card";
+        document.getElementsByTagName("body")[0].appendChild(articleToBeRendered);
+
+        const headingToBeRendered = document.createElement("h1");
+        headingToBeRendered.classList = "card__heading";
+        document.getElementsByTagName("article")[0].appendChild(headingToBeRendered);
+
+        headingToBeRendered.innerText = randomResult.title;
+    }
+}
+
 class App{
     Api;
     Filter;
     urlScraper;
+    render;
 
     constructor(){
         this.api = new Api();
         this.filter = new Filter();
         this.urlScraper = new URLScraper();
+        this.render = new Render();
 
         this.urlScraper.getDataFromURL();
 
         this.api.getData().then(
             () => {
                 this.filter.filter(this.urlScraper.platform, this.api.data);
-                let randomResult = this.filter.randomFromResult();
-                console.log(randomResult);
+                this.render.render(this.filter.randomFromResult());
             }
             );
     }
