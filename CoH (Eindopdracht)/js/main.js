@@ -53,18 +53,21 @@ class Main{
     mainElement
     placeToRenderMain
     LeftPanel;
+    RightPanel;
     constructor(placeToRenderMain){
         this.placeToRenderMain = placeToRenderMain;
         this.mainElement = document.createElement("main");
         this.mainElement.classList = "main";
 
         this.LeftPanel = new LeftPanel(this.mainElement);
+        this.RightPanel = new RightPanel(this.mainElement);
 
     }
 
     render(){
         this.placeToRenderMain.appendChild(this.mainElement);
         this.LeftPanel.render();
+        this.RightPanel.render();
 
     }
 }
@@ -118,7 +121,26 @@ class LeftPanel{
 }
 
 class RightPanel{
+    placeToRenderRightPanel;
     rightElement;
+    detailCard;
+    constructor(placeToRenderRightPanel){
+        this.placeToRenderRightPanel = placeToRenderRightPanel;
+
+        this.rightElement = document.createElement("section");
+        this.rightElement.classList = "rightSection";
+
+        this.detailCard = new DetailCard(this.rightElement);
+    }
+
+    render(){
+        this.placeToRenderRightPanel.appendChild(this.rightElement);
+        this.detailCard.render();
+    }
+}
+
+class DetailCard{
+    placeToRenderDetailCard;
     cardElement;
     imgElement;
     dateElement;
@@ -127,22 +149,50 @@ class RightPanel{
     buttonWrapperElement;
     audioElement;
     sourceElement;
-    constructor(){
+    constructor(placeToRenderDetailCard){
+        this.placeToRenderDetailCard = placeToRenderDetailCard;
 
+        this.cardElement = document.createElement("figure");
+        this.cardElement.classList = "rightSection__card";
+
+        this.imgElement = document.createElement("img");
+        this.imgElement.src = "/img/w.png";
+        this.imgElement.classList = "rightSection__cardImg";
+
+        this.dateElement = document.createElement("p");
+        this.dateElement.innerText = "12-4-2023";
+        this.dateElement.classList = "rightSection__cardDate";
+
+        this.titleElement = document.createElement("h4");
+        this.titleElement.innerText = "Title";
+        this.titleElement.classList = "rightSection__cardTitle"
+
+        this.detailTextElement = document.createElement("p");
+        this.detailTextElement.innerText = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
+        this.detailTextElement.classList = "rightSection__Text";
+
+        this.buttonWrapperElement = document.createElement("article");
+        this.buttonWrapperElement.classList = "rightSection__buttonWrapper";
+
+        this.audioElement = document.createElement("audio");
+        this.audioElement.controls = "true";
+        this.audioElement.src = "audio/pvz.mp3";
+        
+        this.sourceElement = document.createElement("a");
+        this.sourceElement.innerText = "Source >";
+        this.sourceElement.href = "https://www.youtube.com/";
+        this.sourceElement.classList = "rightSection__sourceButton";
     }
 
     render(){
-        
-    }
-}
-
-class DetailCard{
-    constructor(){
-
-    }
-
-    render(){
-        
+        this.placeToRenderDetailCard.appendChild(this.cardElement);
+        this.cardElement.appendChild(this.imgElement);
+        this.cardElement.appendChild(this.dateElement);
+        this.cardElement.appendChild(this.titleElement);
+        this.placeToRenderDetailCard.appendChild(this.detailTextElement);
+        this.placeToRenderDetailCard.appendChild(this.buttonWrapperElement);
+        this.buttonWrapperElement.appendChild(this.audioElement);
+        this.buttonWrapperElement.appendChild(this.sourceElement);
     }
 }
 
