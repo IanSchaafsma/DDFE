@@ -17,6 +17,9 @@ class Filter{
                 this.filteredResult.push(data[i]);
             }
         }
+        if(this.filteredResult.length <=0){
+            this.filteredResult.push(data[0]);
+        }
 
     }
 
@@ -36,6 +39,10 @@ class URLScraper{
 
     getDataFromURL(){
         this.platform = this.currentURL.split("platform=")[1];
+        if(this.platform === undefined){
+            this.platform = "";
+        }
+
         this.pretty = new PrettyPlatform(this.platform);
         this.platform = this.pretty.platform;
     }
@@ -61,8 +68,14 @@ class PrettyPlatform{
 }
 
 class Render{
+    render;
+
+    constructor(){
+        this.move = new Move();
+    }
+
     render(randomResult){
-        // article > h1
+        
         const articleToBeRendered = document.createElement("article");
         articleToBeRendered.classList = "card";
         document.getElementsByTagName("body")[0].appendChild(articleToBeRendered);
@@ -72,6 +85,14 @@ class Render{
         document.getElementsByTagName("article")[0].appendChild(headingToBeRendered);
 
         headingToBeRendered.innerText = randomResult.title;
+    }
+}
+
+class Move{
+    constructor(){
+        document.onmousemove = () => {
+            console.log("Ik beweeeeeeg");
+        }
     }
 }
 
