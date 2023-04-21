@@ -1,7 +1,8 @@
 class getDataFromApi{
     url = ""
     data = null;
-
+    randomizer;
+    
     constructor(newURL){
         this.url = newURL;
     }
@@ -12,8 +13,37 @@ class getDataFromApi{
                 return response.json();
             }).then((data) => {
                 this.data = data.episodes;
+                this.randomizer = new Randomizer(this.data)
+                
             });
         return this.data;
+    }
+}
+
+class Randomizer{
+    result = [1, 2, 3 ,4];
+    data;
+    randomData;
+
+    constructor(data){
+        this.data = data;
+        this.result;
+        this.getRando();
+        // console.log(this.result);
+    }
+
+    getRando(){
+        this.result.forEach(int => {
+            this.randomData = Math.floor(Math.random() * this.data.length);
+            this.randomData1 = Math.floor(Math.random() * this.data.length);
+            this.randomData2 = Math.floor(Math.random() * this.data.length);
+            this.randomData3 = Math.floor(Math.random() * this.data.length);
+            this.result = [];
+            this.result.push((this.data[this.randomData]));
+            this.result.push((this.data[this.randomData1]));
+            this.result.push((this.data[this.randomData2]));
+            this.result.push((this.data[this.randomData3]));
+        }); 
     }
 }
 
@@ -55,16 +85,17 @@ class Main{
     LeftPanel;
     RightPanel;
     data;
+
     constructor(placeToRenderMain, data){
         this.placeToRenderMain = placeToRenderMain;
         this.mainElement = document.createElement("main");
         this.mainElement.classList = "main";
 
         this.data = data.data;
-        // console.log(this.data);
+        console.log(this.data);
 
-        this.LeftPanel = new LeftPanel(this.mainElement, this);
-        this.RightPanel = new RightPanel(this.mainElement, this);
+        this.LeftPanel = new LeftPanel(this.mainElement, this.data);
+        this.RightPanel = new RightPanel(this.mainElement, this.data);
 
     }
 
@@ -72,31 +103,22 @@ class Main{
         this.placeToRenderMain.appendChild(this.mainElement);
         this.LeftPanel.render();
         this.RightPanel.render();
-
-    }
-
-    randomizedData(){
-        let dataRando = [];
-        let randomData = Math.floor(Math.random() * this.data.length);
-        dataRando = this.data[randomData];
-        return this.data[randomData];
-        
     }
 }
 
 class LeftPanel{
     placeToRenderLeftPanel;
     mainElement;
-    main;
+    data;
     randomizedData;
-
     leftElement;
     wrapperElement;
     cardElement;
     imgElement;
     dateElement;
     titleElement;
-    constructor(placeToRenderLeftPanel, main){
+
+    constructor(placeToRenderLeftPanel, data){
         this.placeToRenderLeftPanel = placeToRenderLeftPanel;
 
         this.leftElement = document.createElement("section");
@@ -104,24 +126,27 @@ class LeftPanel{
 
         this.wrapperElement = document.createElement("div");
 
-        this.main = main;
+        this.data = data;
+
+        
 
         for(let i = 0; i < 4; i++){
-            this.randomizedData = this.main.randomizedData();
+
+
 
             this.cardElement = document.createElement("figure");
             this.cardElement.classList = "leftSection__card";
     
             this.imgElement = document.createElement("img");
-            this.imgElement.src = this.randomizedData["img"];
+            // this.imgElement.src = this.randomizedData["img"];
             this.imgElement.classList = "leftSection__cardImg";
     
             this.dateElement = document.createElement("p");
-            this.dateElement.innerText = this.randomizedData["date (dd-mm-yyyy)"];
+            // this.dateElement.innerText = this.randomizedData["date (dd-mm-yyyy)"];
             this.dateElement.classList = "leftSection__cardDate";
     
             this.titleElement = document.createElement("h4");
-            this.titleElement.innerText = this.randomizedData["title"];
+            // this.titleElement.innerText = this.randomizedData["title"];
             this.titleElement.classList = "leftSection__cardTitle";
 
             this.wrapperElement.appendChild(this.cardElement);
@@ -137,9 +162,7 @@ class LeftPanel{
 
     onClick(){
         this.cardElement.onclick = () =>{
-            console.table(this.randomizedData);
         }
-        
     }
    
 
@@ -155,17 +178,18 @@ class RightPanel{
     placeToRenderRightPanel;
     rightElement;
     detailCard;
-    main;
+    data;
 
-    constructor(placeToRenderRightPanel, main){
+    constructor(placeToRenderRightPanel, data){
         this.placeToRenderRightPanel = placeToRenderRightPanel;
 
         this.rightElement = document.createElement("section");
         this.rightElement.classList = "rightSection";
 
-        this.main = main;
+        this.data = data;
+        
 
-        this.detailCard = new DetailCard(this.rightElement, this.main);
+        this.detailCard = new DetailCard(this.rightElement, this.data);
     }
 
     render(){
@@ -185,9 +209,10 @@ class DetailCard{
     audioElement;
     sourceElement;
 
-    main;
-    constructor(placeToRenderDetailCard, main){
-        this.main = main;
+    data;
+    constructor(placeToRenderDetailCard, data){
+        this.data = data;
+        console.log(this.data, this.randomizer);
         // console.log(this.main.randomizedData[0]);    
 
         this.placeToRenderDetailCard = placeToRenderDetailCard;
@@ -196,19 +221,19 @@ class DetailCard{
         this.cardElement.classList = "rightSection__card";
 
         this.imgElement = document.createElement("img");
-        this.imgElement.src = this.main.randomizedData()["img"];
+        // this.imgElement.src = this.main.randomizedData()["img"];
         this.imgElement.classList = "rightSection__cardImg";
 
         this.dateElement = document.createElement("p");
-        this.dateElement.innerText = this.main.randomizedData()["date (dd-mm-yyyy)"];
+        // this.dateElement.innerText = this.main.randomizedData()["date (dd-mm-yyyy)"];
         this.dateElement.classList = "rightSection__cardDate";
 
         this.titleElement = document.createElement("h4");
-        this.titleElement.innerText = this.main.randomizedData()["title"];
+        // this.titleElement.innerText = this.main.randomizedData()["title"];
         this.titleElement.classList = "rightSection__cardTitle"
 
         this.detailTextElement = document.createElement("p");
-        this.detailTextElement.innerText = this.main.randomizedData()["summary"];
+        // this.detailTextElement.innerText = this.main.randomizedData()["summary"];
         this.detailTextElement.classList = "rightSection__Text";
 
         this.buttonWrapperElement = document.createElement("article");
@@ -216,11 +241,11 @@ class DetailCard{
 
         this.audioElement = document.createElement("audio");
         this.audioElement.controls = "true";
-        this.audioElement.src = this.main.randomizedData()["audio"];
+        // this.audioElement.src = this.main.randomizedData()["audio"];
         
         this.sourceElement = document.createElement("a");
         this.sourceElement.innerText = "Source >";
-        this.sourceElement.href = this.main.randomizedData()["url"];
+        // this.sourceElement.href = this.main.randomizedData()["url"];
         this.sourceElement.classList = "rightSection__sourceButton";
     }
 
