@@ -1,8 +1,20 @@
-@media screen and (max-width: 75rem) {
+@use "./colors";
+@use "./vars";
+@use "./mixins";
 
+@media screen and (min-width: 187.5rem){
     body{
-
+        @include mixins.flexCenter;
+        transform: scale(120%);
     }
+
+    .card{
+        border-radius: 2rem;
+        @include mixins.cardHeightResponsive4K;
+    }
+}
+
+@media screen and (max-width: 75rem) {
 
     .card{
         width: 200rem;
@@ -35,12 +47,22 @@
 }
 
 @media screen and (max-width: 50rem) {
+    
     .leftSection__cardTitle{
         font-size: 65%;
     }
 }
 
 @media screen and (max-width: 37.5rem) {
+
+    body{
+        @include mixins.flexCenter;
+        margin-bottom: 4rem;
+    }
+
+    .card{
+        border-radius: 2rem;
+    }
 
     .main{
         padding: 0;

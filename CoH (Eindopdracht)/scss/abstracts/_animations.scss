@@ -1,0 +1,14 @@
+@keyframes popup {
+    from{
+        transform: translateY(4rem);
+    }
+    to{
+        transform: translateY(0rem);
+    }
+}
+
+@mixin popup{
+    animation-name: popup;
+    animation-duration: 0.6s;
+}
+

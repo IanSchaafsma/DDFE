@@ -29,7 +29,6 @@ class Randomizer{
         this.data = data;
         this.result;
         this.getRando();
-        // console.log(this.result);
     }
 
     getRando(){
@@ -53,6 +52,7 @@ class Header{
     headerLogoElement;
     headerTextElement;
     placeToRenderHeader;
+
     constructor(placeToRenderHeader){
         this.placeToRenderHeader = placeToRenderHeader;
 
@@ -84,18 +84,16 @@ class Main{
     placeToRenderMain
     LeftPanel;
     RightPanel;
-
-    randomData;
+    arrayOfDataList;
 
     constructor(placeToRenderMain, getDataFromApi){
         this.placeToRenderMain = placeToRenderMain;
         this.mainElement = document.createElement("main");
         this.mainElement.classList = "main";
 
-        this.randomData = getDataFromApi.randomizer.result;
-        // console.log(this.randomData);
-        this.LeftPanel = new LeftPanel(this.mainElement, this.randomData);
-        this.RightPanel = new RightPanel(this.mainElement, this.LeftPanel, this.randomData);
+        this.arrayOfDataList = getDataFromApi.randomizer.result;
+        this.LeftPanel = new LeftPanel(this.mainElement, this.arrayOfDataList, this);
+        this.RightPanel = new RightPanel(this.mainElement, this.LeftPanel, this.arrayOfDataList);
 
     }
 
@@ -104,45 +102,55 @@ class Main{
         this.LeftPanel.render();
         this.RightPanel.render();
     }
+
+    changeRightSection(number){
+        this.RightPanel.detailCard.changeRightSectionCard(number);
+    };
 }
 
 class LeftPanel{
     placeToRenderLeftPanel;
     mainElement;
-    randomData;
     leftElement;
     wrapperElement;
     cardElement;
     imgElement;
     dateElement;
     titleElement;
+    main;
+    arrayOfDataList;
+    cardClickedNumber;
+    
 
-    RandoNow;
-
-    constructor(placeToRenderLeftPanel, randomData){
+    constructor(placeToRenderLeftPanel, arrayOfDataList, main){
         this.placeToRenderLeftPanel = placeToRenderLeftPanel;
 
         this.leftElement = document.createElement("section");
         this.leftElement.classList = "leftSection";
-        this.randomData = randomData;
+        this.arrayOfDataList = arrayOfDataList;
         this.wrapperElement = document.createElement("div");
+
+        this.main = main;
 
         for(let i = 0; i < 4; i++){
             let number = i;
 
             this.cardElement = document.createElement("figure");
             this.cardElement.classList = "leftSection__card";
+            this.cardElement.onclick = () =>{
+                this.main.changeRightSection(number);
+            }
     
             this.imgElement = document.createElement("img");
-            this.imgElement.src = this.randomData[i]["img"];
+            this.imgElement.src = this.arrayOfDataList[i]["img"];
             this.imgElement.classList = "leftSection__cardImg";
     
             this.dateElement = document.createElement("p");
-            this.dateElement.innerText = this.randomData[i]["date (dd-mm-yyyy)"];
+            this.dateElement.innerText = this.arrayOfDataList[i]["date (dd-mm-yyyy)"];
             this.dateElement.classList = "leftSection__cardDate";
     
             this.titleElement = document.createElement("h4");
-            this.titleElement.innerText = this.randomData[i]["title"];
+            this.titleElement.innerText = this.arrayOfDataList[i]["title"];
             this.titleElement.classList = "leftSection__cardTitle";
 
             this.wrapperElement.appendChild(this.cardElement);
@@ -158,16 +166,10 @@ class LeftPanel{
     }
 
     onClick(i){
-        if(this.RandoNow === undefined){
-            this.RandoNow = 0;
+        if(this.cardClickedNumber === undefined){
+            this.cardClickedNumber = 0;
 
             return;
-        }
-        else{
-         this.cardElement.onclick = () =>{
-            this.RandoNow = i;
-
-            } 
         }
         
     }
@@ -184,27 +186,29 @@ class RightPanel{
     placeToRenderRightPanel;
     rightElement;
     detailCard;
-    leftPanel;
-    randomDataList;
-    randoNumber;
+    arrayOfDataList;
+    cardClickedNumber;
 
-    constructor(placeToRenderRightPanel, randoNumber, randomDataList){
+    constructor(placeToRenderRightPanel, leftPanel, arrayOfDataList){
         this.placeToRenderRightPanel = placeToRenderRightPanel;
-        this.randomDataList = randomDataList;
+        this.arrayOfDataList = arrayOfDataList;
 
         this.rightElement = document.createElement("section");
         this.rightElement.classList = "rightSection";
 
-        
-        this.randoNumber = randoNumber.RandoNow;
 
-        this.detailCard = new DetailCard(this.rightElement, this.randoNumber, this.randomDataList);
+        
+        this.cardClickedNumber = leftPanel.cardClickedNumber; // takes the card thats clicked from the left panel
+
+        this.detailCard = new DetailCard(this.rightElement, this.cardClickedNumber, this.arrayOfDataList);
     }
 
     render(){
         this.placeToRenderRightPanel.appendChild(this.rightElement);
         this.detailCard.render();
     }
+
+    
 }
 
 class DetailCard{
@@ -217,16 +221,12 @@ class DetailCard{
     buttonWrapperElement;
     audioElement;
     sourceElement;
+    arrayOfDataList
+    cardClickedNumber;
 
-    randomDataList
-    randoNumber;
-    combine;
-
-    constructor(placeToRenderDetailCard, randoNumber, randomDataList){
-        this.randoNumber = randoNumber;
-        this.randomDataList = randomDataList;
-        this.combine = []
-        this.combine.push(this.randomDataList);        
+    constructor(placeToRenderDetailCard, cardClickedNumber, arrayOfDataList){
+        this.cardClickedNumber = cardClickedNumber;
+        this.arrayOfDataList = arrayOfDataList;
 
         this.placeToRenderDetailCard = placeToRenderDetailCard;
 
@@ -234,19 +234,19 @@ class DetailCard{
         this.cardElement.classList = "rightSection__card";
 
         this.imgElement = document.createElement("img");
-        this.imgElement.src = this.combine[0][this.randoNumber]["img"];
+        this.imgElement.src = this.arrayOfDataList[this.cardClickedNumber]["img"];
         this.imgElement.classList = "rightSection__cardImg";
 
         this.dateElement = document.createElement("p");
-        this.dateElement.innerText = this.combine[0][this.randoNumber]["date (dd-mm-yyyy)"];
+        this.dateElement.innerText = this.arrayOfDataList[this.cardClickedNumber]["date (dd-mm-yyyy)"];
         this.dateElement.classList = "rightSection__cardDate";
 
         this.titleElement = document.createElement("h4");
-        this.titleElement.innerText = this.combine[0][this.randoNumber]["title"];
+        this.titleElement.innerText = this.arrayOfDataList[this.cardClickedNumber]["title"];
         this.titleElement.classList = "rightSection__cardTitle"
 
         this.detailTextElement = document.createElement("p");
-        this.detailTextElement.innerText = this.combine[0][this.randoNumber]["summary"];
+        this.detailTextElement.innerText = this.arrayOfDataList[this.cardClickedNumber]["summary"];
         this.detailTextElement.classList = "rightSection__Text";
 
         this.buttonWrapperElement = document.createElement("article");
@@ -254,11 +254,11 @@ class DetailCard{
 
         this.audioElement = document.createElement("audio");
         this.audioElement.controls = "true";
-        this.audioElement.src = this.combine[0][this.randoNumber]["audio"];
+        this.audioElement.src = this.arrayOfDataList[this.cardClickedNumber]["audio"];
         
         this.sourceElement = document.createElement("a");
         this.sourceElement.innerText = "Source >";
-        this.sourceElement.href = this.combine[0][this.randoNumber]["url"];
+        this.sourceElement.href = this.arrayOfDataList[this.cardClickedNumber]["url"];
         this.sourceElement.classList = "rightSection__sourceButton";
     }
 
@@ -272,12 +272,22 @@ class DetailCard{
         this.buttonWrapperElement.appendChild(this.audioElement);
         this.buttonWrapperElement.appendChild(this.sourceElement);
     }
+
+    changeRightSectionCard(number) {
+        this.imgElement.src = this.arrayOfDataList[number]["img"];
+        this.dateElement.innerText = this.arrayOfDataList[number]["date (dd-mm-yyyy)"];
+        this.titleElement.innerText = this.arrayOfDataList[number]["title"];
+        this.detailTextElement.innerText = this.arrayOfDataList[number]["summary"];
+        this.audioElement.src = this.arrayOfDataList[number]["audio"];
+        this.sourceElement.href = this.arrayOfDataList[number]["url"];
+    }
 }
 
 class Footer{
     footerElement;
     footerNameElement;
     placeToRenderFooter
+    
     constructor(placeToRenderFooter){
         this.placeToRenderFooter = placeToRenderFooter;
         this.footerElement = document.createElement("footer");
@@ -302,13 +312,17 @@ class App{
     footer;
     body;
     placeToRender;
+    cardDetail;
 
     constructor(){
         this.body = document.getElementsByTagName("body")[0]
 
         this.placeToRender = document.createElement("section");
         this.placeToRender.classList = "card";
+        this.cardDetail = document.createElement("i");
+        this.cardDetail.classList = "fa-solid fa-sun card__detail";
         this.body.appendChild(this.placeToRender);
+        this.placeToRender.appendChild(this.cardDetail);
         
 
         

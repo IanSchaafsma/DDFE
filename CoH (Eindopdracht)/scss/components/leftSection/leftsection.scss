@@ -1,9 +1,10 @@
 @use "../../abstracts/colors";
+@use "../../abstracts/mixins";
+
 .leftSection{
     width: 45%;
     height: 100%;
-    display: flex;
-    justify-content: center;
+    @include mixins.flexCenter;
     align-items: flex-start;
 
     &> div{
@@ -19,18 +20,16 @@
         color: map-get(colors.$baseColors,"fifth-color");
         overflow: hidden;
         position: relative;
-        display: flex;
-        justify-content: center;
-        align-items: center;
+        @include mixins.flexCenter;
         cursor: pointer;
 
         &:hover &Img{
             filter: sepia(80%) blur(1px);
-            cursor: pointer;
         }
 
         &:active &Img{
             filter: sepia(80%);
+
         }       
 
         &Date{
@@ -54,12 +53,8 @@
             object-fit: cover;
             border-radius: 0.5rem;
             filter: sepia(10%) blur(0) brightness(80%);
-            transition: filter 0.2s;
-
-            
+            transition: filter 0.2s;            
         }
-
-        
 
         &::after{
             content: "";

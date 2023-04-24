@@ -1,4 +1,6 @@
 @use "../../abstracts/colors";
+@use "../../abstracts/mixins";
+
 .rightSection{
     width: 45%;
 
@@ -9,6 +11,7 @@
         position: relative;
         color: map-get(colors.$baseColors,"fifth-color");
         overflow: hidden;
+
 
         &Date{
             position: absolute;
@@ -43,9 +46,8 @@
     }
 
     &__buttonWrapper{
-        display: flex;
+        @include mixins.flexCenter;
         justify-content: space-between;
-        align-items: center;
         
     }
 

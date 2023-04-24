@@ -1,12 +1,10 @@
 @use "../../abstracts/colors";
 @use "../../abstracts/vars";
+@use "../../abstracts/mixins";
+
 .header{
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    @include mixins.flexCenter;
     gap: 2rem;
-    // width: 100%;
-    // height: 20%;
     height: map-get(vars.$vhCalc, "heightOfHeader");
     max-width: 150rem;
 
@@ -23,7 +21,6 @@
             transform: rotate(360deg);
         }
     }
-
     
     &__brandName{
         font-size: 4rem;
