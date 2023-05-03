@@ -249,7 +249,7 @@ class DetailCard{
         this.detailTextElement.innerText = this.arrayOfDataList[this.cardClickedNumber]["summary"];
         this.detailTextElement.classList = "rightSection__Text";
 
-        this.buttonWrapperElement = document.createElement("article");
+        this.buttonWrapperElement = document.createElement("div");
         this.buttonWrapperElement.classList = "rightSection__buttonWrapper";
 
         this.audioElement = document.createElement("audio");
